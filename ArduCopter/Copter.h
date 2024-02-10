@@ -1044,6 +1044,9 @@ private:
 #if MODE_TURTLE_ENABLED == ENABLED
     ModeTurtle mode_turtle;
 #endif
+#if MODE_DEER_ENABLED == ENABLED
+    ModeDeer mode_deer;
+#endif
 
     // mode.cpp
     Mode *mode_from_mode_num(const Mode::Number mode);

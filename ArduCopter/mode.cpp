@@ -178,6 +178,11 @@ Mode *Copter::mode_from_mode_num(const Mode::Number mode)
             ret = &mode_turtle;
             break;
 #endif
+#if MODE_DEER_ENABLED == ENABLED
+        case Mode::Number::DEER:
+        ret = &mode_deer;
+        break;
+#endif
 
         default:
             break;

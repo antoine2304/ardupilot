@@ -95,6 +95,7 @@ public:
         AUTOROTATE =   26,  // Autonomous autorotation
         AUTO_RTL =     27,  // Auto RTL, this is not a true mode, AUTO will report as this mode if entered to perform a DO_LAND_START Landing sequence
         TURTLE =       28,  // Flip over after crash
+        DEER =         29,  // Deer protocol mode
 
         // Mode number 127 reserved for the "drone show mode" in the Skybrush
         // fork at https://github.com/skybrush-io/ardupilot
@@ -1559,6 +1560,29 @@ protected:
 
     const char *name() const override { return "STABILIZE"; }
     const char *name4() const override { return "STAB"; }
+
+private:
+
+};
+
+class ModeDeer : public Mode {
+
+public:
+   // inherit constructor
+   using Mode::Mode;
+   Number mode_number() const override { return Number::DEER; }
+   bool init(bool ignore_checks) override;
+   virtual void run() override;
+
+protected:
+   const char *name() const override { return "DEER"; }
+   const char *name4() const override { return "DEER"; }
+
+   // some random stuff from the guide idk yet which ones we need to override or not
+   bool requires_GPS() const override { return true; }
+   bool has_manual_throttle() const override { return false; }
+   bool allows_arming(AP_Arming::Method method) const override { return true; };
+   bool is_autopilot() const override { return true; }
 
 private:
 
